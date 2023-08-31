@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+## PROPS
+- Data are present in app.js 
+- and i want to use it in ExpenseItem component
+- we can use props in two ways
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## App.js
 
-In the project directory, you can run:
+```
+function App() {
 
-### `npm start`
+  //expenses ka data yha h but humko ExpenseItem component m use krna h so we use prop
+  const expenses = [
+    {
+      id: 'e2',
+      title: 'Toilet Paper',
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
+    },
+    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+    {
+      id: 'e3',
+      title: 'Car Insurance',
+      amount: 294.67,
+      date: new Date(2021, 2, 28),
+    },
+    {
+      id: 'e4',
+      title: 'New Desk (Wooden)',
+      amount: 450,
+      date: new Date(2021, 5, 12),
+    },
+  ];
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  return (
+    <div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    Approach 1  - when we use each item of data in separate prop
 
-### `npm test`
+    <ExpenseItem title = {expenses[0].title} amount = {expenses[0].amount} date = {expenses[0].date} />
+    <ExpenseItem title = {expenses[1].title} amount = {expenses[1].amount} date = {expenses[1].date} />
+    <ExpenseItem title = {expenses[2].title} amount = {expenses[2].amount} date = {expenses[2].date} />
+    <ExpenseItem title = {expenses[3].title} amount = {expenses[3].amount} date = {expenses[3].date} /> 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Approach 2  - when we use one prop 
 
-### `npm run build`
+    <ExpenseItem expense = {expenses[0]} />
+    <ExpenseItem expense = {expenses[1]} />
+    <ExpenseItem expense = {expenses[2]} />
+    <ExpenseItem expense = {expenses[3]} />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    </div>
+  );
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ExpenseItem.js
 
-### `npm run eject`
+### Approach 1 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```
+   function ExpenseItem(props) {
+    <div className='expense-item'>
+            <div>{props.date.toISOString()}</div>
+            <div className='expense-item__description'>
+                <h2>{props.title}</h2>
+                <div className='expense-item__price'>${props.amount}</div>
+            </div>
+        </div>
+   }
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Approach 2
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        ```
+        function ExpenseItem(props) {
+        <div className='expense-item'>
+            <div>{props.expense.date.toISOString()}</div>
+            <div className='expense-item__description'>
+                <h2>{props.expense.title}</h2>
+                <div className='expense-item__price'>${props.expense.amount}</div>
+            </div>
+        </div>
+        }
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+         ```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
