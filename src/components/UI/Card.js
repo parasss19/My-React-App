@@ -8,7 +8,8 @@ function Card(props) {
     // const classes = 'card' + props.className;  //it will not work  bc coz of this syntax 'card'
     const classes = 'card ' + props.className;
 
-    return (<div className={classes}>
+    return (
+    <div className={classes}>
         {props.children}
     </div>);
 }
